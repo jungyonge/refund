@@ -1,28 +1,31 @@
 package app.api.refund.business.scrapservice.application.scrap;
 
 import app.api.refund.business.scrapservice.domain.scrap.Scrap;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
+import app.api.refund.business.scrapservice.domain.scrap.SzsScrapService;
+import app.api.refund.business.userservice.domain.UserDomainValidationMessage;
+import app.api.refund.business.userservice.domain.user.UserRepository;
+import app.api.refund.domain.DomainValidationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ScrapService {
 
-    private final RestTemplate restTemplate;
+    private final SzsScrapService szsScrapService;
 
-    private final String API_URL;
+    private final UserRepository userRepository;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    public ScrapService(RestTemplate restTemplate, @Value("szs.scrap-api-url") String api_url) {
-        this.restTemplate = restTemplate;
-        API_URL = api_url;
+    public ScrapService(SzsScrapService szsScrapService, UserRepository userRepository) {
+        this.szsScrapService = szsScrapService;
+        this.userRepository = userRepository;
     }
 
-    public Scrap getScrapInfo(){
+    public boolean getScrapData(String userId, String accessToken){
 
+        userRepository.getUserByUserId(userId).map(user -> {
+            szsScrapService.getScrapData(user.getName(), user.getRegNo(), accessToken);
+            return true;
+        }).orElseThrow(() -> new DomainValidationException(UserDomainValidationMessage.USER_NOT_FOUND));
 
-        return null;
+        return false;
     }
 }
