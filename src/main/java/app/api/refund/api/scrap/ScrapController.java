@@ -21,8 +21,8 @@ public class ScrapController {
     }
 
     @GetMapping("szs/scrap")
-    public void getScrapInfo(@RequestHeader Map<String, String> headers ,@AuthenticationPrincipal CustomUserDetails userDetails){
-        scrapService.getScrapData(userDetails.getUserId(), headers.get("authorization"));
+    public void getScrapInfo(@RequestHeader(value = "authorization") String accessToken ,@AuthenticationPrincipal CustomUserDetails userDetails){
+        scrapService.getScrapData(userDetails.getUserId(), accessToken);
     }
 
 }

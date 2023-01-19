@@ -1,14 +1,9 @@
-package app.api.refund.business.scrapservice.domain.scrap;
+package app.api.refund.business.scrapservice.domain.szs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,17 +37,17 @@ public class SzsScrapData {
     public static class JsonList {
 
         @JsonProperty("급여")
-        public ArrayList<Pay> pay;
+        public ArrayList<PayData> payData;
 
         @JsonProperty("산출세액")
         public String calculatedTaxAmount;
 
         @JsonProperty("소득공제")
-        public ArrayList<IncomeDeduction> incomeDeduction;
+        public ArrayList<IncomeDeductionData> incomeDeductionData;
     }
 
     @Getter
-    public static class Pay {
+    public static class PayData {
 
         @JsonProperty("소득내역")
         public String incomeDetails;
@@ -86,7 +81,7 @@ public class SzsScrapData {
     }
 
     @Getter
-    public static class IncomeDeduction {
+    public static class IncomeDeductionData {
 
         @JsonProperty("금액")
         public String amount;

@@ -1,15 +1,8 @@
-package app.api.refund.business.scrapservice.infrastrucure.scrap;
+package app.api.refund.business.scrapservice.infrastrucure.szs;
 
-import app.api.refund.business.scrapservice.domain.scrap.SzsScrapData;
-import app.api.refund.business.scrapservice.domain.scrap.SzsScrapService;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+import app.api.refund.business.scrapservice.domain.szs.SzsScrapData;
+import app.api.refund.business.scrapservice.domain.szs.SzsScrapService;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -37,8 +30,7 @@ public class SzsScrapServiceImpl implements SzsScrapService {
         httpHeaders.set("Authorization", accessToken);
 
         HttpEntity<Map> request = new HttpEntity<>(map, httpHeaders);
-        SzsScrapData szsScrapData = restTemplate.postForObject(API_URL, request, SzsScrapData.class);
 
-        return null;
+        return restTemplate.postForObject(API_URL, request, SzsScrapData.class);
     }
 }
