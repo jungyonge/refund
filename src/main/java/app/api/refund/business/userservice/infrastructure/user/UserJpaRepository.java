@@ -1,4 +1,4 @@
-package app.api.refund.business.userservice.infrastructure.domain.user;
+package app.api.refund.business.userservice.infrastructure.user;
 
 import app.api.refund.business.userservice.domain.user.User;
 import java.util.Optional;

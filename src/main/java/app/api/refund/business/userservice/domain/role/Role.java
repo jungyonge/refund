@@ -1,4 +1,4 @@
-package app.api.refund.business.userservice.domain.security;
+package app.api.refund.business.userservice.domain.role;
 
 import app.api.refund.business.userservice.domain.user.User;
 import java.time.LocalDateTime;

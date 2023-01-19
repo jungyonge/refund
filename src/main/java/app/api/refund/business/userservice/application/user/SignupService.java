@@ -1,8 +1,8 @@
 package app.api.refund.business.userservice.application.user;
 
 import app.api.refund.business.userservice.domain.UserDomainValidationMessage;
-import app.api.refund.business.userservice.domain.security.RoleName;
-import app.api.refund.business.userservice.domain.security.RoleRepository;
+import app.api.refund.business.userservice.domain.role.RoleName;
+import app.api.refund.business.userservice.domain.role.RoleRepository;
 import app.api.refund.business.userservice.domain.user.User;
 import app.api.refund.business.userservice.domain.user.UserRepository;
 import app.api.refund.domain.DomainValidationException;

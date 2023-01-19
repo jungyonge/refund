@@ -1,4 +1,4 @@
-package app.api.refund.business.userservice.domain.security;
+package app.api.refund.business.userservice.domain.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

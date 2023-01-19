@@ -1,6 +1,6 @@
 package app.api.refund.config.security;
 
-import app.api.refund.business.userservice.domain.security.RoleName;
+import app.api.refund.business.userservice.domain.role.RoleName;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

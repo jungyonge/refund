@@ -1,8 +1,8 @@
-package app.api.refund.business.userservice.infrastructure.domain.role;
+package app.api.refund.business.userservice.infrastructure.role;
 
 
-import app.api.refund.business.userservice.domain.security.Role;
-import app.api.refund.business.userservice.domain.security.RoleName;
+import app.api.refund.business.userservice.domain.role.Role;
+import app.api.refund.business.userservice.domain.role.RoleName;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
