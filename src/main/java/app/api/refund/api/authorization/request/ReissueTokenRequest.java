@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class NewAccessTokenRequest {
+public class ReissueTokenRequest {
     @NotNull
     private String access_token;
 

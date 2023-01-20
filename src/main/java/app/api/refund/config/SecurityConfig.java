@@ -36,7 +36,9 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/h2-console/**");
+        return (web) -> web.ignoring()
+                .antMatchers("/h2-console/**", "/swagger-ui/**", "/configuration/**",
+                        "/swagger-resources/**", "/v2/api-docs", "/webjars/**");
     }
 
     @Bean
@@ -45,7 +47,8 @@ public class SecurityConfig {
                 .csrf().disable()
 
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new JwtFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(tokenProvider),
+                        UsernamePasswordAuthenticationFilter.class)
 
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)

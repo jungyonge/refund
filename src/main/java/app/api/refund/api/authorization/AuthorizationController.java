@@ -2,7 +2,7 @@ package app.api.refund.api.authorization;
 
 
 import app.api.refund.api.authorization.request.LoginRequest;
-import app.api.refund.api.authorization.request.NewAccessTokenRequest;
+import app.api.refund.api.authorization.request.ReissueTokenRequest;
 import app.api.refund.api.authorization.response.TokenDto;
 import app.api.refund.business.authorizationservice.application.authorization.AuthorizationHandler;
 import app.api.refund.config.jwt.TokenProvider;
@@ -34,7 +34,7 @@ public class AuthorizationController {
     }
 
     @PostMapping("/szs/jwt/reissue")
-    public ResponseEntity<TokenDto> reissueAccessToken(@RequestBody NewAccessTokenRequest newAccessTokenRequest) {
+    public ResponseEntity<TokenDto> reissueAccessToken(@RequestBody ReissueTokenRequest newAccessTokenRequest) {
 
         String newAccessToken = tokenProvider.reissueAccessToken(
                 newAccessTokenRequest.getAccess_token(), newAccessTokenRequest.getRefresh_token());
