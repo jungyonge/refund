@@ -73,7 +73,6 @@ public class RefundHandler {
         // 근로소득세액공제금액 = 산출세액 * 0.55
         double employmentIncomeTax = calculatedTax.getCalculatedTaxAmount() * 0.55;
 
-        //특별세액공제금액 = 보험료공제금액, 의료비공제금액, 교육비공제금액, 기부금공제금액
         //보험료공제금액 = 보험료납임금액 * 12%
         double insurancePremiumDeduction = incomeDeduction.getPremium() * 0.12;
         //의료비공제금액 = (의료비납임금액 - 총급여 * 3%) * 15%
@@ -84,9 +83,12 @@ public class RefundHandler {
         //기부금공제금액 = 기부금납입금액 * 15%
         double donationDeduction = incomeDeduction.getDonations() * 0.15;
 
+        //특별세액공제금액 = 보험료공제금액, 의료비공제금액, 교육비공제금액, 기부금공제금액
         double specialTaxDeduction = insurancePremiumDeduction + medicalExpenseDeduction + educationExpensesDeduction + donationDeduction;
 
         //표준세액공제금액
+        //특별세액공제금액의 합 < 130,000 이면 표준세액공제금액 = 130,000원
+        //특별세액공제금액의 합 >= 130,000 이면 표준세액공제금액 = 0
         double standardTaxDeduction = (specialTaxDeduction < 130000) ? 130000 : 0;
 
         //퇴직연금세액공제금액 = 퇴직연금 납입금액 * 0.15
