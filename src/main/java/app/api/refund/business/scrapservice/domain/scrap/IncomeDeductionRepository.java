@@ -4,6 +4,6 @@ public interface IncomeDeductionRepository {
 
     IncomeDeduction save(IncomeDeduction incomeDeduction);
 
-    IncomeDeduction getIncomeDeductionByUserId(Long userId);
+    IncomeDeduction getIncomeDeductionByUserIdAndScrapId(Long userId, Long scrapId);
 
 }

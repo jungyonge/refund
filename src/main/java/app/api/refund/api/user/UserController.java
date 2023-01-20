@@ -2,7 +2,7 @@ package app.api.refund.api.user;
 
 import app.api.refund.api.user.request.SignupRequest;
 import app.api.refund.api.user.response.UserDto;
-import app.api.refund.business.userservice.application.user.SignupService;
+import app.api.refund.business.userservice.application.user.SignupHandler;
 import app.api.refund.config.security.CustomUserDetails;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private final SignupService signupService;
+    private final SignupHandler signupService;
 
-    public UserController(SignupService signupService) {
+    public UserController(SignupHandler signupService) {
         this.signupService = signupService;
     }
 

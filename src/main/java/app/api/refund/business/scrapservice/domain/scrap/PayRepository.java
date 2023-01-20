@@ -4,5 +4,5 @@ public interface PayRepository {
 
     Pay save(Pay pay);
 
-    Pay getPayByUserId(Long userId);
+    Pay getPayByUserIdAndScrapId(Long userId, Long scrapId);
 }

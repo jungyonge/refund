@@ -15,7 +15,6 @@ public class GlobalControllerErrorAdvice {
     @ExceptionHandler(DomainValidationException.class)
     public ResponseEntity<ErrorResponse> domainValidationException(DomainValidationException e) {
         log.error(e.getMessage(), e);
-
         return ResponseEntity.status(e.getHttpStatus())
                 .body(ErrorResponse.ERROR(e.getCode(), e.getMessage()));
     }

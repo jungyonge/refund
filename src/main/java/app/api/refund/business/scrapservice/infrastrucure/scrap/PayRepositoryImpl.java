@@ -19,7 +19,7 @@ public class PayRepositoryImpl implements PayRepository {
     }
 
     @Override
-    public Pay getPayByUserId(Long userId) {
-        return payJpaRepository.findTop1ByUserId(userId);
+    public Pay getPayByUserIdAndScrapId(Long userId, Long scrapId) {
+        return payJpaRepository.findTop1ByUserIdAndScrapId(userId, scrapId);
     }
 }

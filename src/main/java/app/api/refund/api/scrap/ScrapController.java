@@ -1,28 +1,30 @@
 package app.api.refund.api.scrap;
 
-import app.api.refund.business.scrapservice.application.scrap.ScrapService;
+import app.api.refund.api.scrap.response.ScrapResponse;
+import app.api.refund.business.scrapservice.application.scrap.ScrapHandler;
 import app.api.refund.config.security.CustomUserDetails;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ScrapController {
 
-    private final ScrapService scrapService;
+    private final ScrapHandler scrapService;
 
-    public ScrapController(ScrapService scrapService) {
+    public ScrapController(ScrapHandler scrapService) {
         this.scrapService = scrapService;
     }
 
     @GetMapping("szs/scrap")
-    public void getScrapInfo(@RequestHeader(value = "authorization") String accessToken ,@AuthenticationPrincipal CustomUserDetails userDetails){
-        scrapService.getScrapData(userDetails.getUserId(), accessToken);
+    public ResponseEntity<ScrapResponse> getScrapInfo(
+            @RequestHeader(value = "authorization") String accessToken,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        boolean status = scrapService.getScrapData(userDetails.getUserId(), accessToken);
+
+        return ResponseEntity.ok(new ScrapResponse(status));
     }
 
 }

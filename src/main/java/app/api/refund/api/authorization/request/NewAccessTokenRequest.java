@@ -1,15 +1,16 @@
 package app.api.refund.api.authorization.request;
 
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class NewAccessTokenRequest {
-
+    @NotNull
     private String access_token;
+
+    @NotNull
     private String refresh_token;
 
 }

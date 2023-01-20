@@ -19,7 +19,7 @@ public class CalculatedTaxRepositoryImpl implements CalculatedTaxRepository {
     }
 
     @Override
-    public CalculatedTax getCalculatedTaxByUserId(Long userId) {
-        return calculatedTaxJpaRepository.findTop1ByUserId(userId);
+    public CalculatedTax getCalculatedTaxByUserIdAndScrapId(Long userId, Long scrapId) {
+        return calculatedTaxJpaRepository.findTop1ByUserIdAndScrapId(userId, scrapId);
     }
 }

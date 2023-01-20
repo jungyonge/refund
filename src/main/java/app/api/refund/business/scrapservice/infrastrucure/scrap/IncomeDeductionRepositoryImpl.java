@@ -19,7 +19,7 @@ public class IncomeDeductionRepositoryImpl implements IncomeDeductionRepository 
     }
 
     @Override
-    public IncomeDeduction getIncomeDeductionByUserId(Long userId) {
-        return incomeDeductionJpaRepository.findTop1ByUserId(userId);
+    public IncomeDeduction getIncomeDeductionByUserIdAndScrapId(Long userId, Long scrapId) {
+        return incomeDeductionJpaRepository.findTop1ByUserIdAndScrapId(userId, scrapId);
     }
 }

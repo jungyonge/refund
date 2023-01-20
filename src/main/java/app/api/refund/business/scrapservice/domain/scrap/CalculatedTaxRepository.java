@@ -4,5 +4,5 @@ public interface CalculatedTaxRepository {
 
     CalculatedTax save(CalculatedTax calculatedTax);
 
-    CalculatedTax getCalculatedTaxByUserId(Long userId);
+    CalculatedTax getCalculatedTaxByUserIdAndScrapId(Long userId, Long scrapId);
 }

@@ -20,6 +20,6 @@ public class ScrapRepositoryImpl implements ScrapRepository {
 
     @Override
     public Scrap getScrapByUserId(Long userId) {
-        return scrapJpaRepository.findTop1ByUserId(userId);
+        return scrapJpaRepository.findTop1ByUserIdOrderByCreatedDesc(userId);
     }
 }

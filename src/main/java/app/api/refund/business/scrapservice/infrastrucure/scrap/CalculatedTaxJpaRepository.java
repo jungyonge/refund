@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CalculatedTaxJpaRepository extends CrudRepository<CalculatedTax, Long> {
 
-    CalculatedTax findTop1ByUserId(Long userId);
+    CalculatedTax findTop1ByUserIdAndScrapId(Long userId, Long ScrapId);
 }
