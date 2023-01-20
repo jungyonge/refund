@@ -32,7 +32,7 @@ public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(unique = true)
     private String userId;
@@ -45,8 +45,7 @@ public class User {
 
     private String regNoAes256;
 
-    private String regNoBcrypt;
-
+    private String aes256Iv;
     private boolean activated;
 
     @Enumerated(EnumType.STRING)
@@ -75,20 +74,22 @@ public class User {
         this.setLastLoggedIn(LocalDateTime.now());
     }
 
-    public User(String userId, String password, String name, String regNo) {
+    public User(String userId, String password, String name, String regNo, String regNoAes256,  String aes256Iv) {
 
         this.setUserId(userId);
         this.setPassword(password);
         this.setName(name);
         this.setRegNo(regNo);
+        this.setRegNoAes256(regNoAes256);
+        this.setAes256Iv(aes256Iv);
         this.setActivated(true);
         this.setUserStatus(UserStatus.JOINED);
         LocalDateTime now = LocalDateTime.now();
         this.setCreated(now);
     }
 
-    public static User create(String userId, String password, String name, String regNo) {
-        return new User(userId, password, name, regNo);
+    public static User create(String userId, String password, String name, String regNo, String regNoAes256, String aes256Iv) {
+        return new User(userId, password, name, regNo, regNoAes256, aes256Iv);
     }
 
     private void setPassword(String password) {
@@ -128,4 +129,11 @@ public class User {
         this.userStatus = userStatus;
     }
 
+    private void setRegNoAes256(String regNoAes256) {
+        this.regNoAes256 = regNoAes256;
+    }
+
+    private void setAes256Iv(String aes256Iv) {
+        this.aes256Iv = aes256Iv;
+    }
 }

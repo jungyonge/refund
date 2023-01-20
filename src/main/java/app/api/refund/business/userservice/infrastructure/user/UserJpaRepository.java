@@ -9,4 +9,7 @@ public interface UserJpaRepository extends CrudRepository<User, Long> {
     Optional<User> findUserByIdAndUserId(long id, String userId);
     Optional<User> findUserByUserId(String userId);
 
+    Optional<User> findUserByRegNo(String regNo);
+
+
 }

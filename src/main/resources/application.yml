@@ -44,3 +44,7 @@ jwt:
 
 szs:
   scrap-api-url : https://codetest.3o3.co.kr/v2/scrap
+
+aes:
+  secret-key : RfUjXn2r4u7x!A%D*G-KaPdSgVkYp3s6
+  algorithm : AES/CBC/PKCS5Padding

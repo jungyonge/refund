@@ -24,5 +24,10 @@ public class UserRepositoryImpl implements UserRepository {
         return userJpaRepository.findUserByUserId(userId);
     }
 
+    @Override
+    public Optional<User> getUserByRegNo(String regNo) {
+        return userJpaRepository.findUserByRegNo(regNo);
+    }
+
 
 }

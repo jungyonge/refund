@@ -20,6 +20,7 @@ import app.api.refund.business.userservice.domain.UserDomainValidationMessage;
 import app.api.refund.business.userservice.domain.user.User;
 import app.api.refund.business.userservice.domain.user.UserRepository;
 import app.api.refund.domain.DomainValidationException;
+import app.api.refund.util.Aes256Util;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
@@ -40,25 +41,31 @@ public class ScrapHandler {
 
     private final PayRepository payRepository;
 
+    private final Aes256Util aes256Util;
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
 
     public ScrapHandler(SzsScrapService szsScrapService, UserRepository userRepository,
             ScrapRepository scrapRepository, CalculatedTaxRepository calculatedTaxRepository,
-            IncomeDeductionRepository incomeDeductionRepository, PayRepository payRepository) {
+            IncomeDeductionRepository incomeDeductionRepository, PayRepository payRepository,
+            Aes256Util aes256Util) {
         this.szsScrapService = szsScrapService;
         this.userRepository = userRepository;
         this.scrapRepository = scrapRepository;
         this.calculatedTaxRepository = calculatedTaxRepository;
         this.incomeDeductionRepository = incomeDeductionRepository;
         this.payRepository = payRepository;
+        this.aes256Util = aes256Util;
     }
 
     @Transactional
     public boolean getScrapData(String userId, String accessToken) {
         return userRepository.getUserByUserId(userId).map(user -> {
-            SzsScrapData szsScrapData = szsScrapService.getScrapData(user.getName(),
-                    user.getRegNo(), accessToken);
+
+            String originRegNo = aes256Util.decryptAES256(user.getRegNoAes256(), user.getAes256Iv());
+            SzsScrapData szsScrapData = szsScrapService.getScrapData(user.getName(), originRegNo, accessToken);
+
             if(szsScrapData.getStatus().equals("success")){
                 ScrapData scrapData = szsScrapData.getData();
 

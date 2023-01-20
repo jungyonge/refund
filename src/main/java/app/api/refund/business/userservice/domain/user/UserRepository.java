@@ -8,6 +8,9 @@ public interface UserRepository {
 
     Optional<User> getUserByUserId(String userId);
 
+    Optional<User> getUserByRegNo(String regNo);
+
+
 }
 
 
