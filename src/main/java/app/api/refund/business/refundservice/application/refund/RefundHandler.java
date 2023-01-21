@@ -42,7 +42,7 @@ public class RefundHandler {
         this.payRepository = payRepository;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public RefundResponse getRefundData(String userId){
 
         return userRepository.getUserByUserId(userId).map(user -> {

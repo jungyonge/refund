@@ -3,12 +3,15 @@ package app.api.refund.api.scrap;
 import app.api.refund.api.scrap.response.ScrapResponse;
 import app.api.refund.business.scrapservice.application.scrap.ScrapHandler;
 import app.api.refund.config.security.CustomUserDetails;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
+@Tag(name = "Scrap API", description = "스크랩 요청관련 API")
 @RestController
 public class ScrapController {
 
@@ -18,10 +21,11 @@ public class ScrapController {
         this.scrapService = scrapService;
     }
 
+    @Tag(name = "Scrap API", description = "스크랩 요청관련 API")
     @GetMapping("szs/scrap")
     public ResponseEntity<ScrapResponse> getScrapInfo(
-            @RequestHeader(value = "authorization") String accessToken,
-            @AuthenticationPrincipal CustomUserDetails userDetails) {
+            @ApiIgnore @RequestHeader(value = "authorization") String accessToken,
+            @ApiIgnore @AuthenticationPrincipal CustomUserDetails userDetails) {
         boolean status = scrapService.getScrapData(userDetails.getUserId(), accessToken);
 
         return ResponseEntity.ok(new ScrapResponse(status));
