@@ -1,7 +1,6 @@
 package app.api.refund.util;
 
 import java.nio.charset.StandardCharsets;
-import java.security.SecureRandom;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -15,8 +14,6 @@ public class Aes256Util {
 
     private final String ALGORITHM;
     private final String AES_SECRET_KEY;
-    SecureRandom random = new SecureRandom();
-
 
     public Aes256Util(@Value("${aes.algorithm}") String algorithm,
             @Value("${aes.secret-key}") String aes_secret_key) {

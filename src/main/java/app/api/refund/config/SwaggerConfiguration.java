@@ -44,12 +44,10 @@ public class SwaggerConfiguration {
                 .description(API_DESCRIPTION)
                 .build();
     }
-    // swagger에서 jwt 토큰값 넣기위한 설정 -> JWT를 인증 헤더로 포함하도록 ApiKey 를 정의.
     private ApiKey apiKey() {
         return new ApiKey("JWT", "Authorization", "header");
     }
 
-    //전역 AuthorizationScope를 사용하여 JWT SecurityContext를 구성.
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())

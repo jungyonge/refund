@@ -3,6 +3,7 @@ package app.api.refund.api.scrap;
 import app.api.refund.api.scrap.response.ScrapResponse;
 import app.api.refund.business.scrapservice.application.scrap.ScrapHandler;
 import app.api.refund.config.security.CustomUserDetails;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +23,9 @@ public class ScrapController {
     }
 
     @Tag(name = "Scrap API", description = "스크랩 요청관련 API")
+    @ApiOperation(
+            value = "스크랩데이터 조회 요청"
+            , notes = "access token 유효해야 재발급 가능")
     @GetMapping("szs/scrap")
     public ResponseEntity<ScrapResponse> getScrapInfo(
             @ApiIgnore @RequestHeader(value = "authorization") String accessToken,

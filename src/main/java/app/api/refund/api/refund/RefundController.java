@@ -3,6 +3,7 @@ package app.api.refund.api.refund;
 import app.api.refund.api.refund.response.RefundResponse;
 import app.api.refund.business.refundservice.application.refund.RefundHandler;
 import app.api.refund.config.security.CustomUserDetails;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +22,9 @@ public class RefundController {
     }
 
     @Tag(name = "Refund API", description = "환급금 조회관련 API")
+    @ApiOperation(
+            value = "환급금 조회 요청"
+            , notes = "access token 유효해야 재발급 가능")
     @GetMapping("/szs/refund")
     public ResponseEntity<RefundResponse> getRefundData(
             @ApiIgnore @AuthenticationPrincipal CustomUserDetails userDetails){
