@@ -24,4 +24,20 @@ public class WhiteList {
 
     private String regNo;
 
+    private WhiteList(String name, String regNo) {
+        this.setName(name);
+        this.setRegNo(regNo);
+    }
+
+    public static WhiteList create(String name, String regNo) {
+        return new WhiteList(name, regNo);
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    private void setRegNo(String regNo) {
+        this.regNo = regNo;
+    }
 }

@@ -44,6 +44,7 @@ public class SwaggerConfiguration {
                 .description(API_DESCRIPTION)
                 .build();
     }
+
     private ApiKey apiKey() {
         return new ApiKey("JWT", "Authorization", "header");
     }
