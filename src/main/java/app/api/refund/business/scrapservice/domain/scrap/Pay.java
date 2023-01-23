@@ -29,7 +29,7 @@ public class Pay {
     private String incomeDetails;
 
     @Comment("총지급액")
-    private Integer totalPayment;
+    private Double totalPayment;
 
     @Comment("업무시작일")
     private LocalDate workStartDate;
@@ -54,7 +54,7 @@ public class Pay {
 
     private LocalDateTime created;
 
-    private Pay(Long userId, Long scrapId, String incomeDetails, Integer totalPayment,
+    private Pay(Long userId, Long scrapId, String incomeDetails, Double totalPayment,
             LocalDate workStartDate, LocalDate workEndDate, String company, String name,
             LocalDate paymentDate, String incomeClassification, String companyRegistrationNumber) {
         this.setUserId(userId);
@@ -71,7 +71,7 @@ public class Pay {
         this.setCreated(LocalDateTime.now());
     }
 
-    public static Pay create(Long userId, Long scrapId, String incomeDetails, Integer totalPayment,
+    public static Pay create(Long userId, Long scrapId, String incomeDetails, Double totalPayment,
             LocalDate workStartDate, LocalDate workEndDate, String company, String name,
             LocalDate paymentDate, String incomeClassification, String companyRegistrationNumber) {
         return new Pay(userId, scrapId, incomeDetails, totalPayment, workStartDate, workEndDate,
@@ -90,7 +90,7 @@ public class Pay {
         this.incomeDetails = incomeDetails;
     }
 
-    private void setTotalPayment(Integer totalPayment) {
+    private void setTotalPayment(Double totalPayment) {
         this.totalPayment = totalPayment;
     }
 

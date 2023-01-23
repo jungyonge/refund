@@ -23,7 +23,7 @@ public class CalculatedTax {
 
     private Long scrapId;
 
-    private Integer calculatedTaxAmount;
+    private Double calculatedTaxAmount;
 
     private LocalDateTime created;
 
@@ -39,18 +39,18 @@ public class CalculatedTax {
         this.created = created;
     }
 
-    private void setCalculatedTaxAmount(Integer calculatedTaxAmount) {
+    private void setCalculatedTaxAmount(Double calculatedTaxAmount) {
         this.calculatedTaxAmount = calculatedTaxAmount;
     }
 
-    private CalculatedTax(Long userId, Long scrapId, Integer calculatedTaxAmount) {
+    private CalculatedTax(Long userId, Long scrapId, Double calculatedTaxAmount) {
         this.setUserId(userId);
         this.setScrapId(scrapId);
         this.setCalculatedTaxAmount(calculatedTaxAmount);
         this.setCreated(LocalDateTime.now());
     }
 
-    public static CalculatedTax create(Long userId, Long scrapId, Integer calculatedTaxAmount) {
+    public static CalculatedTax create(Long userId, Long scrapId, Double calculatedTaxAmount) {
 
         return new CalculatedTax(userId, scrapId, calculatedTaxAmount);
     }

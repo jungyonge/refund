@@ -25,24 +25,24 @@ public class IncomeDeduction {
     private Long scrapId;
 
     @Comment("보험료")
-    private Integer premium;
+    private Double premium;
 
     @Comment("교육비")
-    private Integer educationExpenses;
+    private Double educationExpenses;
 
     @Comment("기부금")
-    private Integer donations;
+    private Double donations;
 
     @Comment("의료비")
-    private Integer medicalExpenses;
+    private Double medicalExpenses;
 
     @Comment("퇴직연금")
-    private Integer retirementPension;
+    private Double retirementPension;
 
     private LocalDateTime created;
 
-    private IncomeDeduction(Long userId, Long scrapId, Integer premium, Integer educationExpenses,
-            Integer donations, Integer medicalExpenses, Integer retirementPension) {
+    private IncomeDeduction(Long userId, Long scrapId, Double premium, Double educationExpenses,
+            Double donations, Double medicalExpenses, Double retirementPension) {
         this.setUserId(userId);
         this.setScrapId(scrapId);
         this.setPremium(premium);
@@ -53,9 +53,9 @@ public class IncomeDeduction {
         this.setCreated(LocalDateTime.now());
     }
 
-    public static IncomeDeduction create(Long userId, Long scrapId, Integer premium,
-            Integer educationExpenses, Integer donations, Integer medicalExpenses,
-            Integer retirementPension) {
+    public static IncomeDeduction create(Long userId, Long scrapId, Double premium,
+            Double educationExpenses, Double donations, Double medicalExpenses,
+            Double retirementPension) {
         return new IncomeDeduction(userId, scrapId, premium, educationExpenses, donations,
                 medicalExpenses, retirementPension);
     }
@@ -69,23 +69,23 @@ public class IncomeDeduction {
         this.scrapId = scrapId;
     }
 
-    private void setPremium(Integer premium) {
+    private void setPremium(Double premium) {
         this.premium = premium;
     }
 
-    private void setEducationExpenses(Integer educationExpenses) {
+    private void setEducationExpenses(Double educationExpenses) {
         this.educationExpenses = educationExpenses;
     }
 
-    private void setDonations(Integer donations) {
+    private void setDonations(Double donations) {
         this.donations = donations;
     }
 
-    private void setMedicalExpenses(Integer medicalExpenses) {
+    private void setMedicalExpenses(Double medicalExpenses) {
         this.medicalExpenses = medicalExpenses;
     }
 
-    private void setRetirementPension(Integer retirementPension) {
+    private void setRetirementPension(Double retirementPension) {
         this.retirementPension = retirementPension;
     }
 

@@ -97,7 +97,7 @@ public class ScrapHandler {
     private void savePayData(JsonList jsonList, User user, Scrap scrap){
         for (PayData data : jsonList.getPayData()) {
             Pay pay = Pay.create(user.getId(), scrap.getId(), data.getIncomeDetails(),
-                    Integer.valueOf(data.getTotalPayment().replaceAll(",", "")),
+                    Double.parseDouble(data.getTotalPayment().replaceAll(",", "")),
                     LocalDate.parse(data.getWorkStartDate(), formatter),
                     LocalDate.parse(data.getWorkEndDate(), formatter), data.getCompany(),
                     data.getName(), LocalDate.parse(data.getPaymentDate(), formatter),
@@ -107,24 +107,24 @@ public class ScrapHandler {
     }
 
     private void saveIncomeDeductionData(JsonList jsonList, User user, Scrap scrap){
-        int premium = 0, educationExpenses = 0, donations = 0, medicalExpenses = 0, retirementPension = 0;
+        double premium = 0, educationExpenses = 0, donations = 0, medicalExpenses = 0, retirementPension = 0;
 
         for (IncomeDeductionData data : jsonList.getIncomeDeductionData()) {
             switch (data.getIncomeClassification()) {
                 case "보험료":
-                    premium = Integer.parseInt(data.getAmount().replaceAll(",", ""));
+                    premium = Double.parseDouble(data.getAmount().replaceAll(",", ""));
                     break;
                 case "교육비":
-                    educationExpenses = Integer.parseInt(data.getAmount().replaceAll(",", ""));
+                    educationExpenses = Double.parseDouble(data.getAmount().replaceAll(",", ""));
                     break;
                 case "기부금":
-                    donations = Integer.parseInt(data.getAmount().replaceAll(",", ""));
+                    donations = Double.parseDouble(data.getAmount().replaceAll(",", ""));
                     break;
                 case "의료비":
-                    medicalExpenses = Integer.parseInt(data.getAmount().replaceAll(",", ""));
+                    medicalExpenses = Double.parseDouble(data.getAmount().replaceAll(",", ""));
                     break;
                 case "퇴직연금":
-                    retirementPension = Integer.parseInt(
+                    retirementPension = Double.parseDouble(
                             data.getTotalAmountOfPaid().replaceAll(",", ""));
                     break;
             }
@@ -137,7 +137,7 @@ public class ScrapHandler {
 
     private void saveCalculatedTaxData(JsonList jsonList, User user, Scrap scrap){
         CalculatedTax calculatedTax = CalculatedTax.create(user.getId(), scrap.getId(),
-                Integer.valueOf(jsonList.getCalculatedTaxAmount().replaceAll(",", "")));
+                Double.parseDouble(jsonList.getCalculatedTaxAmount().replaceAll(",", "")));
 
         calculatedTaxRepository.save(calculatedTax);
     }
