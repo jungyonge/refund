@@ -28,7 +28,7 @@ public class RefundController {
     @GetMapping("/szs/refund")
     public ResponseEntity<RefundResponse> getRefundData(
             @ApiIgnore @AuthenticationPrincipal CustomUserDetails userDetails){
-        RefundResponse refundResponse = refundHandler.getRefundData(userDetails.getUserId());
+        RefundResponse refundResponse = refundHandler.getRefundData(userDetails.getId(), userDetails.getUserId());
         return ResponseEntity.ok(refundResponse);
     }
 }

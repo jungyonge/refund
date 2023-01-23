@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private long id;
+    private Long id;
 
     private String userId;
 

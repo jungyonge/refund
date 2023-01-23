@@ -43,9 +43,9 @@ public class RefundHandler {
     }
 
     @Transactional(readOnly = true)
-    public RefundResponse getRefundData(String userId){
+    public RefundResponse getRefundData(long id, String userId){
 
-        return userRepository.getUserByUserId(userId).map(user -> {
+        return userRepository.getUserByIdAndUserId(id, userId).map(user -> {
 
             Scrap scrap = scrapRepository.getScrapByUserId(user.getId());
             if(scrap == null){

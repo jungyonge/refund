@@ -20,6 +20,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public Optional<User> getUserByIdAndUserId(long id, String userId) {
+        return userJpaRepository.findUserByIdAndUserId(id, userId);
+    }
+
+    @Override
     public Optional<User> getUserByUserId(String userId) {
         return userJpaRepository.findUserByUserId(userId);
     }
