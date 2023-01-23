@@ -23,24 +23,24 @@ public class Refund {
     private Long userId;
 
     @Comment("결정세액")
-    private Integer determinedTaxAmount;
+    private Double determinedTaxAmount;
 
     @Comment("퇴직연금세액공제")
-    private Integer retirementPensionTaxCredit;
+    private Double retirementPensionTaxCredit;
 
     private LocalDateTime created;
 
     private LocalDateTime updated;
 
-    private Refund(Long userId, Integer determinedTaxAmount, Integer retirementPensionTaxCredit) {
+    private Refund(Long userId, Double determinedTaxAmount, Double retirementPensionTaxCredit) {
         this.setUserId(userId);
         this.setDeterminedTaxAmount(determinedTaxAmount);
         this.setRetirementPensionTaxCredit(retirementPensionTaxCredit);
         this.setCreated(LocalDateTime.now());
     }
 
-    public static Refund create(Long userId, Integer determinedTaxAmount,
-            Integer retirementPensionTaxCredit) {
+    public static Refund create(Long userId, Double determinedTaxAmount,
+            Double retirementPensionTaxCredit) {
         return new Refund(userId, determinedTaxAmount, retirementPensionTaxCredit);
     }
 
@@ -48,11 +48,11 @@ public class Refund {
         this.userId = userId;
     }
 
-    private void setDeterminedTaxAmount(Integer determinedTaxAmount) {
+    private void setDeterminedTaxAmount(Double determinedTaxAmount) {
         this.determinedTaxAmount = determinedTaxAmount;
     }
 
-    private void setRetirementPensionTaxCredit(Integer retirementPensionTaxCredit) {
+    private void setRetirementPensionTaxCredit(Double retirementPensionTaxCredit) {
         this.retirementPensionTaxCredit = retirementPensionTaxCredit;
     }
 

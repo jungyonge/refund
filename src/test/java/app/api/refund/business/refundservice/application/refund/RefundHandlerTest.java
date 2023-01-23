@@ -62,7 +62,7 @@ class RefundHandlerTest {
                 .when(calculatedTaxRepository)
                 .getCalculatedTaxByUserIdAndScrapId(null, null);
         // when
-        RefundResponse response = refundHandler.getRefundData(1, "홍길동");
+        RefundResponse response = refundHandler.makeRefundData(1, "홍길동");
         // then
         assertEquals("900,000", response.getRetirementPensionTaxCredit());
         assertEquals("0", response.getDeterminedTaxAmount());
@@ -78,7 +78,7 @@ class RefundHandlerTest {
                 .getUserByIdAndUserId(1, "홍길동");
         // when
         DomainValidationException e = assertThrows(DomainValidationException.class,
-                () -> refundHandler.getRefundData(1, "홍길동"));
+                () -> refundHandler.makeRefundData(1, "홍길동"));
         // then
         assertEquals("스크랩 데이터가 없습니다. 스크랩데이터 요청 먼저 해주세요.", e.getMessage());
     }

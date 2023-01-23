@@ -1,7 +1,8 @@
 package app.api.refund.api.user.response;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,8 @@ import lombok.Getter;
 @Schema(description = "회원가입 성공 response")
 @Getter
 @AllArgsConstructor
-public class UserDto {
+@JsonInclude(Include.NON_NULL)
+public class SignUpDto {
 
     @Schema(description = "회원가입 ID")
     @NotNull
@@ -20,11 +22,4 @@ public class UserDto {
     @NotNull
     private String name;
 
-    @Schema(description = "결정세액", example = "100,000")
-    @JsonProperty("결정세액")
-    public String determinedTaxAmount;
-
-    @Schema(description = "퇴직연금세액공제", example = "200,000")
-    @JsonProperty("퇴직연금세액공제")
-    public String retirementPensionTaxCredit;
 }
