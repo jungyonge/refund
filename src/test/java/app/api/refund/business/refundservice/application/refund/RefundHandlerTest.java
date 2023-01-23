@@ -25,7 +25,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-
 class RefundHandlerTest {
 
     @Mock
@@ -43,13 +42,25 @@ class RefundHandlerTest {
 
     @Test
     @DisplayName("스크랩 데이터 기준으로 환급금 조회성공")
-    void getRefundData_Success(){
+    void getRefundData_Success() {
         //given
-        doReturn(Optional.of(User.create("홍길동","","홍길동","","",""))).when(userRepository).getUserByIdAndUserId(1,"홍길동");
-        doReturn(Scrap.create(1L,"","","","","",null,null)).when(scrapRepository).getScrapByUserId(null);
-        doReturn(Pay.create(null,null,null,60000000,null,null,null,null,null,null,null)).when(payRepository).getPayByUserIdAndScrapId(null, null);
-        doReturn(IncomeDeduction.create(null,null,100000	,200000,150000,4400000,6000000)).when(incomeDeductionRepository).getIncomeDeductionByUserIdAndScrapId(null, null);
-        doReturn(CalculatedTax.create(null, null,3000000)).when(calculatedTaxRepository).getCalculatedTaxByUserIdAndScrapId(null,null);
+        doReturn(Optional.of(User.create("홍길동", "", "홍길동", "", "", "")))
+                .when(userRepository)
+                .getUserByIdAndUserId(1, "홍길동");
+        doReturn(Scrap.create(1L, "", "", "", "", "", null, null))
+                .when(scrapRepository)
+                .getScrapByUserId(null);
+        doReturn(Pay.create(null, null, null, 60000000.0, null, null,
+                null, null, null, null, null))
+                .when(payRepository)
+                .getPayByUserIdAndScrapId(null, null);
+        doReturn(IncomeDeduction.create(null, null,
+                100000.0, 200000.0, 150000.0, 4400000.0, 6000000.0))
+                .when(incomeDeductionRepository)
+                .getIncomeDeductionByUserIdAndScrapId(null, null);
+        doReturn(CalculatedTax.create(null, null, 3000000.0))
+                .when(calculatedTaxRepository)
+                .getCalculatedTaxByUserIdAndScrapId(null, null);
         // when
         RefundResponse response = refundHandler.getRefundData(1, "홍길동");
         // then
@@ -60,11 +71,14 @@ class RefundHandlerTest {
 
     @Test
     @DisplayName("스크랩데이터가 없을시 에러 발생")
-    void getRefundData_NoScrapData_ExceptionThrown(){
+    void getRefundData_NoScrapData_ExceptionThrown() {
         //given
-        doReturn(Optional.of(User.create("홍길동","","홍길동","","",""))).when(userRepository).getUserByIdAndUserId(1,"홍길동");
+        doReturn(Optional.of(User.create("홍길동", "", "홍길동", "", "", "")))
+                .when(userRepository)
+                .getUserByIdAndUserId(1, "홍길동");
         // when
-        DomainValidationException e = assertThrows(DomainValidationException.class, () -> refundHandler.getRefundData(1, "홍길동"));
+        DomainValidationException e = assertThrows(DomainValidationException.class,
+                () -> refundHandler.getRefundData(1, "홍길동"));
         // then
         assertEquals("스크랩 데이터가 없습니다. 스크랩데이터 요청 먼저 해주세요.", e.getMessage());
     }
