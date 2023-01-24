@@ -6,6 +6,7 @@ import app.api.refund.config.security.CustomUserDetails;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,6 +27,7 @@ public class ScrapController {
     @ApiOperation(
             value = "스크랩데이터 조회 요청"
             , notes = "access token 유효해야 재발급 가능")
+    @Secured({"ROLE_NORMAL_USER"})
     @GetMapping("szs/scrap")
     public ResponseEntity<ScrapResponse> getScrapInfo(
             @ApiIgnore @RequestHeader(value = "authorization") String accessToken,
