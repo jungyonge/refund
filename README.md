@@ -32,6 +32,12 @@
 ---
 ## 빌드, 실행
 ~~~
+//압축해제
+unzip szs-refund.zip
+
+//폴더이동
+cd /refund
+
 //빌드
 ./gradlew clean build
 
